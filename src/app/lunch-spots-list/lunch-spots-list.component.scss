@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+
+.orders-list {
+  list-style: none;
+
+  li {
+    border-bottom: 1px solid $color-white;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+}

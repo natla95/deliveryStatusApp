@@ -1,0 +1,14 @@
+<div>
+  <ul class="orders-list">
+    <li class="d-flex justify-content-between" *ngFor="let item of lunchSpotsList">
+      <div>
+        <p class="font-bold font16">{{ item.company }}</p>
+        <p class="font14">{{ item.address }}</p>
+        <p class="font12">Lunching spot: {{ item.name }}</p>
+      </div>
+      <div>
+        <p class="font-bold font16">Dostawa: {{ item.deliveryTime }} </p>
+      </div>
+    </li>
+  </ul>
+</div>

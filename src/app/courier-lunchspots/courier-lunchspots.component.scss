@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.lunch-spots-nav {
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    color: $color-icon-inactive;
+    text-align: center;
+
+    i {
+      font-size: 40px;
+    }
+
+    &.active {
+      * {
+        color: $color-icon-active;
+      }
+    }
+  }
+}

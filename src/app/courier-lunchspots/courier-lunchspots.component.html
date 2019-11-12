@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="text-center">
+    <p class="font16 font-bold">Status</p>
+  </div>
+
+  <app-lunch-spots-list [currentOrdersStatus]="displayedStatusOfOrders"></app-lunch-spots-list>
+
+  <div class="lunch-spots-nav row">
+    <div
+      class="nav-item col-6"
+      [class.active]="displayedStatusOfOrders == 'UNDELIVERED'"
+      (click)="changeOrdersStatus('UNDELIVERED')"
+    >
+      <i class="fas fa-clock mb-2"></i>
+      <span>Oczekujące</span>
+    </div>
+    <div
+      class="nav-item col-6"
+      [class.active]="displayedStatusOfOrders == 'DELIVERED'"
+      (click)="changeOrdersStatus('DELIVERED')"
+    >
+      <i class="fas fa-thumbs-up mb-2"></i>
+      <span>Dostarczone</span>
+    </div>
+  </div>
+</div>
