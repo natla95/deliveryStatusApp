@@ -1,7 +1,7 @@
 import { LunchSpot } from './lunch-spot.model';
 import { LunchSpotsService } from './lunch-spots.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lunch-spots-list',
@@ -12,30 +12,40 @@ export class LunchSpotsListComponent implements OnInit {
 
   @Input() set currentOrdersStatus(value: string) {
     this.ordersStatus = value;
-    this.getLunchSpotsForCurrentStatus();
+    this.setFilters();
+    // this.getLunchSpots();
   }
   get currentOrdersStatus(): string {
     return this.ordersStatus;
   }
 
+  lunchSpotsListFilters = {};
   lunchSpotsList: LunchSpot[];
 
   private ordersStatus: string;
 
-  constructor(private lunchSpotsService: LunchSpotsService) { }
+  constructor(private lunchSpotsService: LunchSpotsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.lunchSpotsListFilters = params;
+    });
   }
 
-  getLunchSpotsForCurrentStatus() {
-    this.lunchSpotsService.getLunchSpots().subscribe(response => {
-      this.lunchSpotsList = (response as any).lunchSpots;
+  setFilters() {
+    debugger;
+    const urlTree = this.router.createUrlTree([], {
+      queryParams: this.lunchSpotsListFilters,
+      queryParamsHandling: 'merge',
+      preserveFragment: true
     });
-    // this.lunchSpotsService.getLunchSpots().pipe(
-    //   map(val => this.lunchSpotsList = val)
-    //   map(items => items.jsonData.filter(item => item.type === 'dev'))
-    // )
-    // .subscribe();
+    this.router.navigateByUrl(urlTree);
+  }
+
+  getLunchSpots() {
+    this.lunchSpotsService.getLunchSpots(this.lunchSpotsListFilters).subscribe(response => {
+      this.lunchSpotsList = response;
+    });
   }
 
 }

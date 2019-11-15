@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourierLunchspotsComponent implements OnInit {
 
-  displayedStatusOfOrders = 'UNDELIVERED';
+  chosenStatusOfOrders = 'UNDELIVERED';
 
   constructor() { }
 
@@ -15,6 +15,6 @@ export class CourierLunchspotsComponent implements OnInit {
   }
 
   changeOrdersStatus(status: string) {
-    this.displayedStatusOfOrders = status;
+    this.chosenStatusOfOrders = status;
   }
 }

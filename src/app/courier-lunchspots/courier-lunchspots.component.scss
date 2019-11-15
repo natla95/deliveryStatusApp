@@ -7,6 +7,9 @@
     flex-direction: column;
     color: $color-icon-inactive;
     text-align: center;
+    cursor: pointer;
+    transition: 0.2s color;
+    outline: none;
 
     i {
       font-size: 40px;
@@ -16,6 +19,9 @@
       * {
         color: $color-icon-active;
       }
+    }
+    &:hover {
+      color: $color-icon-hover;
     }
   }
 }

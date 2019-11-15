@@ -1,3 +1,4 @@
+import { LunchSpot } from './lunch-spot.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
@@ -10,7 +11,7 @@ export class LunchSpotsService {
 
   constructor(private http: HttpClient) {}
 
-  getLunchSpots() {
-    return this.http.get(`${this.apiUrl}/orders`);
+  getLunchSpots(filters: {}) {
+    return this.http.get<LunchSpot[]>(`${this.apiUrl}/lunchSpots`, filters);
   }
 }
